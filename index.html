@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI驱动偷盗气“查、算、追”智能化应用</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <section class="login-screen" id="login-screen">
+    <div class="login-panel">
+      <div class="login-brand"><img src="./assets/chengdu-gas-logo.png" alt="成都燃气"><span>燃气智稽 · 查、算、追</span></div>
+      <p class="eyebrow">成都燃气稽查中心</p>
+      <h1>登录智能稽查平台</h1>
+      <p class="login-subtitle">使用工作账号进入风险筛查与案件工作台</p>
+      <form id="login-form">
+        <label>账号<input id="login-username" autocomplete="username" value="admin" required></label>
+        <label>密码<input id="login-password" type="password" autocomplete="current-password" placeholder="请输入密码" required></label>
+        <button class="button primary login-submit" type="submit">登录工作台</button>
+        <p class="login-hint">演示账号：<b>admin</b>　密码：<b>gas-ai-2026</b></p>
+        <p class="login-error" id="login-error" role="alert"></p>
+      </form>
+    </div>
+  </section>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <picture>
+          <source media="(max-width: 680px)" srcset="./assets/chengdu-gas-mark.png">
+          <img src="./assets/chengdu-gas-logo.png" alt="成都燃气">
+        </picture>
+        <small>“查、算、追”智能化应用</small>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard"><span>⌂</span>智能稽查</button>
+        <button class="nav-item" data-view="loss"><span>∿</span>气量核算</button>
+        <button class="nav-item" data-view="recovery"><span>¥</span>追缴方案</button>
+        <button class="nav-item" data-view="cases"><span>✓</span>案件跟踪</button>
+      </nav>
+      <div class="sidebar-foot">
+        <span class="status-dot"></span><span>预测服务已连接</span>
+        <small>Temporal-MLP v1</small>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">燃气稽查中心</p><h1 id="page-title">AI 智能稽查</h1></div>
+        <div class="top-actions">
+          <div class="source-pill"><span class="status-dot"></span><span id="source-name">正在读取数据…</span></div>
+          <a class="button secondary" href="./sample_gas_data.xlsx" download>下载模板</a>
+          <button class="button primary" id="import-button">导入 Excel</button>
+          <input id="file-input" type="file" accept=".xlsx" hidden>
+        </div>
+      </header>
+
+      <section class="content" id="app-content">
+        <div class="loading-state"><div class="spinner"></div><h2>正在训练预测模型</h2><p>读取 Excel 数据并建立正常用气基线…</p></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head"><div><p class="eyebrow">用户案件</p><h2 id="modal-title"></h2></div><button class="icon-button" id="close-modal" aria-label="关闭">×</button></div>
+      <div id="modal-content"></div>
+    </section>
+  </div>
+  <script src="./app.js"></script>
+</body>
+</html>
